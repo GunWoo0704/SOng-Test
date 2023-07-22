@@ -35,8 +35,6 @@ public class Dialogue_Manager : MonoBehaviour
     GameObject Select_Box_Prefab; // 선택지박스 프리팹
     [SerializeField]
     Sprite[] Select_Active; // 선택지 스프라이트 On/OFF
-    [SerializeField]
-    GameObject Notice_Character; // 하단 알림 캐릭터 오브젝트
 
     private List<Dialogue> current_Dialogues; // 현재 카테고리에 속한 다이얼로그를 List로 불러옴.
     private Dialogue cur_Dialogue; // 현재 다이얼로그 리스트에서 진행해야할 다이얼로그
@@ -68,24 +66,8 @@ public class Dialogue_Manager : MonoBehaviour
         {
             case "하단":
                 Notice_Canvas.SetActive(true);
-                Notice_Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = cur_Dialogue.text;
-
-                for (int i = 0; i < Notice_Character.transform.childCount; i++)
-                    Notice_Character.transform.GetChild(i).gameObject.SetActive(false);
-
-                Debug.Log(cur_Dialogue.character);
-                switch(cur_Dialogue.character)
-                {
-                    case "Alien1":
-                        Notice_Character.transform.GetChild(0).gameObject.SetActive(true);
-                        break;
-                    case "Alien2":
-                        Notice_Character.transform.GetChild(1).gameObject.SetActive(true);
-                        break;
-                    case "Alien3":
-                        Notice_Character.transform.GetChild(2).gameObject.SetActive(true);
-                        break;
-                }                
+                Notice_Canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cur_Dialogue.text;
+                Notice_Canvas.transform.GetChild(3).GetComponent<Image>().sprite = return_Character_Sprite(cur_Dialogue.character);
                 break;
             case "대화":
                 Talk_Canvas.SetActive(true);

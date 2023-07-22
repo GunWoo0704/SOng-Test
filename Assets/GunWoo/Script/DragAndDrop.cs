@@ -6,7 +6,7 @@ public class DragAndDrop : MonoBehaviour
 	private Vector3 offset;
 	public Transform targetArea;
 	public float allowedDistance = 0.5f;
-	public string nextSceneName = "Title 4";
+	public string nextSceneName = "BuildMap 1";
 	private void OnMouseDown()
 	{
 		screenPoint = Camera.main.WorldToScreenPoint(transform.position);
@@ -24,7 +24,7 @@ public class DragAndDrop : MonoBehaviour
 	{
 		if (Vector3.Distance(transform.position, targetArea.position) <= allowedDistance)
 		{
-			SceneManager.LoadScene("Title 4");
+			SceneManager.LoadScene("BuildMap 1");
 		}
 	}
 }

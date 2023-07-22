@@ -1,7 +1,5 @@
 category,type,character,text,action
-Intro,하단,Alien1,English,
-Intro,하단,Alien2,Japan,
-Intro,하단,Alien3,Two Eye,
+Intro,하단,,English,
 Intro,대화,외계인,Hi!,
 Intro,대화,외계인,I'm Alien.,
 Intro,대화,지구인,Hi,
