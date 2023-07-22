@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class DragAndDrop : MonoBehaviour
 {
 	private Vector3 screenPoint;
@@ -7,6 +8,9 @@ public class DragAndDrop : MonoBehaviour
 	public Transform targetArea;
 	public float allowedDistance = 0.5f;
 	public string nextSceneName = "BuildMap 1";
+
+	public SceneTransition sceneTransition; // SceneTransition 스크립트 참조 추가
+
 	private void OnMouseDown()
 	{
 		screenPoint = Camera.main.WorldToScreenPoint(transform.position);
@@ -24,7 +28,8 @@ public class DragAndDrop : MonoBehaviour
 	{
 		if (Vector3.Distance(transform.position, targetArea.position) <= allowedDistance)
 		{
-			SceneManager.LoadScene("BuildMap 1");
+			sceneTransition.FadeOutAndLoadScene(nextSceneName); // FadeOutAndLoadScene 메소드 호출로 변경
 		}
 	}
 }
+
