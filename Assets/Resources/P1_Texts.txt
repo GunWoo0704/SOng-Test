@@ -1,0 +1,27 @@
+category,type,character,text,action
+Intro,하단,,English,
+Intro,대화,외계인,Hi!,
+Intro,대화,외계인,I'm Alien.,
+Intro,대화,지구인,Hi,
+Intro,대화,외계인,Who are you?,
+Intro,대화,지구인,I'm Human,
+Intro,대화,외계인,HI HI,
+Intro,대화,외계인,I'm so High.,
+Intro,대화,외계인,Hi!,Reset
+Intro,대화,외계인,I'm Alien.,
+Intro,대화,지구인,Hi,
+Intro,대화,외계인,Who are you?,
+Intro,대화,지구인,I'm Human,
+Intro,대화,외계인,HI HI,
+Intro,대화,외계인,I'm so High.,
+Intro,선택지2,,Select1,Select1
+Intro,,,Select2,Select2
+Intro,하단,,English,
+Intro,대화,외계인,Re HI,
+Intro,하단,Red,Hi,
+Intro,하단,Blue,Space,
+Intro,하단,Blue,Fantasy,
+Intro,하단,Red,Jupiter,
+Intro,하단,,Neptune,
+Select1,대화,외계인,반갑습니다.,
+Select2,대화,지구인,안 반갑습니다.,
