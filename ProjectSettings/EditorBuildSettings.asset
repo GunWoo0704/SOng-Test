@@ -6,15 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/GunWoo/Scene/Title.unity
+    path: Assets/GunWoo/Scene/Title/Title.unity
     guid: bf1419f6dfaeeaa4c826910a720544aa
   - enabled: 1
-    path: Assets/GunWoo/Scene/Title 2.unity
+    path: Assets/GunWoo/Scene/Title/Title 2.unity
     guid: 5ffd256ccdccc914eb97f512f404b892
   - enabled: 1
-    path: Assets/GunWoo/Scene/Title 3.unity
+    path: Assets/GunWoo/Scene/Title/Title 3.unity
     guid: b572b489f2a933b47a383c1152d76eac
   - enabled: 1
-    path: Assets/GunWoo/Scene/Title 4.unity
-    guid: 73b6ec204958e9e4d8d61b6f2f060b1e
+    path: Assets/GunWoo/Scene/BuildMap/BuildMap 1.unity
+    guid: f9ba14ba119c07c41843b3b92e50657b
+  - enabled: 1
+    path: Assets/GunWoo/Scene/BuildMap/BuildMap 2.unity
+    guid: f72a6da250a42b6419062906f64341d1
+  - enabled: 1
+    path: Assets/GunWoo/Scene/BuildMap/BuildMap 3.unity
+    guid: f4440b4ebf1e92547a2e6a7f6065ef11
   m_configObjects: {}
