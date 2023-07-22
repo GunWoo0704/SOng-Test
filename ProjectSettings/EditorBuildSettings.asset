@@ -7,13 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/GunWoo/Scene/Title/Title.unity
-    guid: bf1419f6dfaeeaa4c826910a720544aa
+    guid: 20c1fbb284d5e5041a8ff3bb53ce4c8e
   - enabled: 1
     path: Assets/GunWoo/Scene/Title/Title 2.unity
-    guid: 5ffd256ccdccc914eb97f512f404b892
+    guid: 0f4c5ae5cca3fd9408085b1c0b617849
   - enabled: 1
     path: Assets/GunWoo/Scene/Title/Title 3.unity
-    guid: b572b489f2a933b47a383c1152d76eac
+    guid: 4914ea6a89f253c4d9ee6287b0d76ebe
   - enabled: 1
     path: Assets/GunWoo/Scene/BuildMap/BuildMap 1.unity
     guid: f9ba14ba119c07c41843b3b92e50657b

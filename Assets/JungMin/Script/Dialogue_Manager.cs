@@ -18,9 +18,7 @@ public class Dialogue_Manager : MonoBehaviour
     [SerializeField]
     GameObject Hint_Canvas; // 힌트 캔버스
 
-    [Space]
-    [SerializeField]
-    Sprite[] Character_Sprite; // 캐릭터 프사 배열
+    [Space]    
     [SerializeField]
     GameObject Talk_Box_Prefab; // 토크박스 프리팹
     [SerializeField]
@@ -30,11 +28,13 @@ public class Dialogue_Manager : MonoBehaviour
     [SerializeField]
     GameObject Long_Talk_Box_Hero_Prefab; // 토크박스 주인공 롱프리팹
     [SerializeField]
-    Sprite[] Talk_Box_Sprite; // 왼쪽, 왼쪽롱, 오른, 오른롱 순으로 사용.
-    [SerializeField]
     GameObject Select_Box_Prefab; // 선택지박스 프리팹
     [SerializeField]
     Sprite[] Select_Active; // 선택지 스프라이트 On/OFF
+    [SerializeField]
+    GameObject Notice_Character; // 하단 캐릭터 이미지
+    [SerializeField]
+    Sprite[] Talk_Box_Profile; // 지구인 3명 스프라이트. 총 6개
 
     private List<Dialogue> current_Dialogues; // 현재 카테고리에 속한 다이얼로그를 List로 불러옴.
     private Dialogue cur_Dialogue; // 현재 다이얼로그 리스트에서 진행해야할 다이얼로그
@@ -66,12 +66,30 @@ public class Dialogue_Manager : MonoBehaviour
         {
             case "하단":
                 Notice_Canvas.SetActive(true);
-                Notice_Canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cur_Dialogue.text;
-                Notice_Canvas.transform.GetChild(3).GetComponent<Image>().sprite = return_Character_Sprite(cur_Dialogue.character);
+                Notice_Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = cur_Dialogue.text;
+                
+                for(int i = 0; i < 3; i++)                
+                    Notice_Character.transform.GetChild(i).gameObject.SetActive(false);                
+
+                switch(cur_Dialogue.character)
+                {
+                    case "외계인1":
+                        Notice_Character.transform.GetChild(0).gameObject.SetActive(true);
+                        break;
+                    case "외계인2":
+                        Notice_Character.transform.GetChild(1).gameObject.SetActive(true);
+                        break;
+                    case "외계인3":
+                        Notice_Character.transform.GetChild(2).gameObject.SetActive(true);
+                        break;
+                }
                 break;
             case "대화":
                 Talk_Canvas.SetActive(true);
-                
+
+                // 다이얼로그 이름으로 캐릭터 프로필사진 할당.
+                Talk_Canvas.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = return_Character_Sprite(cur_Dialogue.character);
+
                 // Type = 대화이고, Action란에 Reset이 들어잇는경우, Reset
                 if (cur_Dialogue.action == "Reset")
                 {
@@ -184,15 +202,18 @@ public class Dialogue_Manager : MonoBehaviour
         End_Dialogue();
     }
 
-    Sprite return_Character_Sprite(string character)
+    Sprite return_Character_Sprite(string category)
     {
-        switch (character)
+        switch (category)
         {
-            case "Red":
-                return Character_Sprite[0];
-            default:
-                return Character_Sprite[1];
+            case "지구인1":
+                return Talk_Box_Profile[0];
+            case "지구인2":
+                return Talk_Box_Profile[1];
+            case "지구인3":
+                return Talk_Box_Profile[2];
         }
+        return null;
     }    
 
     void Set_Text_Box(int i)
@@ -212,8 +233,7 @@ public class Dialogue_Manager : MonoBehaviour
 
                 talk_Box_Y_Pos -= 100;
                 talk_Box_Y_Pos -= 80;
-                clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(-220f, talk_Box_Y_Pos);
-                clone.GetComponent<Image>().sprite = Talk_Box_Sprite[0];
+                clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(-220f, talk_Box_Y_Pos);                
                 talk_Box_Y_Pos -= 80;
             }
             else
@@ -222,13 +242,9 @@ public class Dialogue_Manager : MonoBehaviour
 
                 talk_Box_Y_Pos -= 100;
                 talk_Box_Y_Pos -= 120;
-                clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(-220f, talk_Box_Y_Pos);
-                clone.GetComponent<Image>().sprite = Talk_Box_Sprite[1];
+                clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(-220f, talk_Box_Y_Pos);                
                 talk_Box_Y_Pos -= 120;
-            }
-            // 프사 띄우고 왼쪽에 생성.
-            clone.transform.GetChild(1).gameObject.SetActive(true);
-            clone.transform.GetChild(1).GetComponent<Image>().sprite = return_Character_Sprite(talk_List[i][0]);
+            }            
         }
         // 주인공이면 오른쪽에 생성만.
         else
@@ -239,8 +255,7 @@ public class Dialogue_Manager : MonoBehaviour
 
                 talk_Box_Y_Pos -= 100;
                 talk_Box_Y_Pos -= 80;
-                clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(220f, talk_Box_Y_Pos);
-                clone.GetComponent<Image>().sprite = Talk_Box_Sprite[2];
+                clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(220f, talk_Box_Y_Pos);                
                 talk_Box_Y_Pos -= 40;
             }
             else
@@ -249,8 +264,7 @@ public class Dialogue_Manager : MonoBehaviour
 
                 talk_Box_Y_Pos -= 100;
                 talk_Box_Y_Pos -= 120;
-                clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(220f, talk_Box_Y_Pos);
-                clone.GetComponent<Image>().sprite = Talk_Box_Sprite[3];
+                clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(220f, talk_Box_Y_Pos);                
                 talk_Box_Y_Pos -= 60;
             }
         }
