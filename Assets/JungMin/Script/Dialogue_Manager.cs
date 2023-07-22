@@ -56,7 +56,7 @@ public class Dialogue_Manager : MonoBehaviour
 
     private void Start()
     {
-        Start_Dialogue("Intro");
+        //Start_Dialogue("Intro");
     }
     void Processing_Dialogue()
     {
