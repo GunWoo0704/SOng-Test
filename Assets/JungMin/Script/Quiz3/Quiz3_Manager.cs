@@ -7,6 +7,8 @@ public class Quiz3_Manager : MonoBehaviour
     public static Quiz3_Manager instance = null;
 
     [SerializeField]
+    GameObject WholeQuiz_Field;
+    [SerializeField]
     GameObject Maple_Object;
     [SerializeField]
     GameObject Camera_Shutter;
@@ -50,14 +52,19 @@ public class Quiz3_Manager : MonoBehaviour
         SetText(1);
     }
 
+    public void Quiz3_Start()
+    {
+        // 퀴즈 3 스타트 함수.
+        WholeQuiz_Field.SetActive(true);
+    }
     public void active_Maple_Canvas(bool toggle)
     {
         Maple_Object.SetActive(toggle);
     }    
     public void Start_Camera_Effect()
-    {
-        active_Maple_Canvas(false);
+    {        
         StartCoroutine(Camera_Effect());
+        Maple_Object.transform.GetChild(1).gameObject.SetActive(true);
     }
     IEnumerator Camera_Effect()
     {        
@@ -70,8 +77,9 @@ public class Quiz3_Manager : MonoBehaviour
                 Camera_Shutter.SetActive(true);
             else
                 Camera_Shutter.SetActive(false);
-        }        
-        Start_Synchronize();
+        }
+        active_Maple_Canvas(false);
+        Start_Synchronize();        
         yield return null;
     }
 
@@ -101,6 +109,8 @@ public class Quiz3_Manager : MonoBehaviour
     {
         for(int i = 0; i < Circuit_Canvas.transform.GetChild(0).transform.childCount; i++)      
             Circuit_Canvas.transform.GetChild(0).transform.GetChild(i).gameObject.SetActive(true);
+        Circuit_Canvas.transform.GetChild(1).gameObject.SetActive(true);
+        Circuit_Canvas.transform.GetChild(2).gameObject.SetActive(true);
         SetText(5);
     }
     public void input_Letter(string s)
@@ -168,6 +178,9 @@ public class Quiz3_Manager : MonoBehaviour
                 break;
             case 3:
                 Maple_Ending_Text.SetActive(false);
+                Maple_Leaf.SetActive(false);
+                Maple_Machine.SetActive(false);
+                Maple_Button.SetActive(true);
                 break;
         }
     }

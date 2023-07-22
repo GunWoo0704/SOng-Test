@@ -8,6 +8,8 @@ public class Quiz1_Manager : MonoBehaviour
     public static Quiz1_Manager instance = null;
 
     [SerializeField]
+    GameObject WholeQuiz_Field;
+    [SerializeField]
     GameObject[] Folders;
     [SerializeField]
     Sprite Highlight_Folder_Sprite;
@@ -29,6 +31,12 @@ public class Quiz1_Manager : MonoBehaviour
         Upper_Text.text = "숨겨진 것을 볼 수 있게 하세요.";
     }
     
+    public void Quiz1_Start()
+    {
+        // 퀴즈 1 총괄 스타트.
+        WholeQuiz_Field.SetActive(true);
+    }
+
     public void Show_Full()
     {
         Folders[0].GetComponent<Image>().sprite = Full_Folder_Sprite;
