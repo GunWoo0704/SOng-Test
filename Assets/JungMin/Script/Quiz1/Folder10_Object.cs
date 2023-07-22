@@ -17,5 +17,7 @@ public class Folder10_Object : MonoBehaviour
     {
         Folder10_Animator.enabled = false;
         Folder10.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 240f);
+
+        Quiz1_Manager.instance.SetText(3);
     }
 }

@@ -17,5 +17,6 @@ public class Folder5_Object : MonoBehaviour
     {
         Folder5_Animator.enabled = false;
         Folder5.GetComponent<RectTransform>().anchoredPosition = new Vector2(320f, 240f);
+
     }
 }
