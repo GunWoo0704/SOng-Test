@@ -54,7 +54,8 @@ public class Quiz3_Manager : MonoBehaviour
 
     private void Start()
     {
-        Dialogue_Manager.instance.Start_Dialogue("Chapter3");
+        //Dialogue_Manager.instance.Start_Dialogue("Chapter3");
+        Dialogue_Manager.instance.Start_Dialogue("Outro");
     }
     public void Quiz3_Start()
     {

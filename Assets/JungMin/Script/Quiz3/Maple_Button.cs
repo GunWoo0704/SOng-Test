@@ -17,8 +17,10 @@ public class Maple_Button : MonoBehaviour, IPointerClickHandler
 
     public void Stop_Anima()
     {
-        MB_Animator.enabled = false;        
+        MB_Animator.enabled = false;
+        this.gameObject.SetActive(false);
         // 엔딩 다이얼로그 연결
+        Dialogue_Manager.instance.Start_Dialogue("Outro");
     }
 
     public void OnPointerClick(PointerEventData eventData)
