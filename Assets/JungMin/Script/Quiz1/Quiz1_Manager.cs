@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class Quiz1_Manager : MonoBehaviour
 {
     public static Quiz1_Manager instance = null;
@@ -30,7 +31,11 @@ public class Quiz1_Manager : MonoBehaviour
         Default_Sprite = Folders[0].GetComponent<Image>().sprite;
         Upper_Text.text = "숨겨진 것을 볼 수 있게 하세요.";
     }
-    
+
+    private void Start()
+    {
+        Dialogue_Manager.instance.Start_Dialogue("Chapter1");
+    }
     public void Quiz1_Start()
     {
         // 퀴즈 1 총괄 스타트.
@@ -120,6 +125,7 @@ public class Quiz1_Manager : MonoBehaviour
                 break;
             case 3:
                 Upper_Text.text = "1단계 완료.";
+                Invoke("switch_Next_Scene", 1f);                
                 break;
         }
     }
@@ -127,5 +133,6 @@ public class Quiz1_Manager : MonoBehaviour
     void switch_Next_Scene()
     {
         // 다음 씬으로 넘어가기.
+        SceneManager.LoadScene("BuildMap 2");
     }
 }

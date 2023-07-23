@@ -8,6 +8,8 @@ TagManager:
   - Maple
   - Locked
   - Circuit
+  - Ground
+  - Cloudy
   layers:
   - Default
   - TransparentFX

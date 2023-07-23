@@ -51,16 +51,12 @@ public class Dialogue_Manager : MonoBehaviour
         else
             Destroy(this);
     }
-
-    private void Start()
-    {
-        //Start_Dialogue("Intro");
-    }
+    
     void Processing_Dialogue()
     {
         All_Canvas_Close();
 
-        if (cur_Dialogue.type == "하단" || cur_Dialogue.type == "대화")
+        if (cur_Dialogue.type == "하단" || cur_Dialogue.type == "대화" || cur_Dialogue.type == "")
             Touch_Input_Canvas.SetActive(true);
         switch (cur_Dialogue.type)
         {
@@ -88,7 +84,7 @@ public class Dialogue_Manager : MonoBehaviour
                 Talk_Canvas.SetActive(true);
 
                 // 다이얼로그 이름으로 캐릭터 프로필사진 할당.
-                Talk_Canvas.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = return_Character_Sprite(cur_Dialogue.character);
+                Talk_Canvas.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = return_Character_Sprite(cur_Dialogue.category);
 
                 // Type = 대화이고, Action란에 Reset이 들어잇는경우, Reset
                 if (cur_Dialogue.action == "Reset")
@@ -99,7 +95,7 @@ public class Dialogue_Manager : MonoBehaviour
                 }
 
                 // 대화창 먼저 초기화하고.
-                foreach (Transform prefab in Talk_Canvas.transform)
+                foreach (Transform prefab in Talk_Canvas.transform.Find("Talk_Parent").transform)
                 {
                     Destroy(prefab.gameObject);
                 }
@@ -140,7 +136,12 @@ public class Dialogue_Manager : MonoBehaviour
                     if (i != optionCount - 1)
                         dialogue_Count++;
                 }                
-                break;            
+                break;
+            case "연결":
+                Connect_Next_Situation(cur_Dialogue.action);                
+                break;
+            default:
+                break;
         }
     }
 
@@ -204,14 +205,46 @@ public class Dialogue_Manager : MonoBehaviour
 
     Sprite return_Character_Sprite(string category)
     {
+        Debug.Log(category);
         switch (category)
         {
-            case "지구인1":
+            case "Chapter1":
+            case "Chapter1_1":
+            case "Chapter1_2":
+            case "Chapter1_3":
                 return Talk_Box_Profile[0];
-            case "지구인2":
+            case "Chapter1_4":
                 return Talk_Box_Profile[1];
-            case "지구인3":
+            case "Chapter2":
+            case "Chapter2_1":
+            case "Chapter2_2":
+            case "Chapter2_3":
+            case "Chapter2_4":
+            case "Chapter2_5":
+            case "Chapter2_6":
+            case "Chapter2_7":
                 return Talk_Box_Profile[2];
+            case "Chapter2_8":
+            case "Chapter2_9":
+            case "Chapter2_10":
+            case "Chapter2_11":
+                return Talk_Box_Profile[3];
+            case "Chapter3":
+            case "Chapter3_1":
+            case "Chapter3_2":
+            case "Chapter3_3":
+            case "Chapter3_4":
+            case "Chapter3_5":
+            case "Chapter3_6":
+            case "Chapter3_7":
+            case "Chapter3_8":
+            case "Chapter3_9":
+                return Talk_Box_Profile[4];
+            case "Chapter3_10":
+            case "Chapter3_11":
+            case "Chapter3_12":
+            case "Chapter3_13":
+                return Talk_Box_Profile[5];
         }
         return null;
     }    
@@ -225,25 +258,25 @@ public class Dialogue_Manager : MonoBehaviour
             isLong = true;                
 
         // 주인공이 아닌 경우.
-        if (talk_List[i][0] != "외계인")
+        if (talk_List[i][0] != "외계인1")
         {            
             if (isLong == false)
             {
-                clone = Instantiate(Talk_Box_Prefab, Talk_Canvas.transform);
+                clone = Instantiate(Talk_Box_Prefab, Talk_Canvas.transform.Find("Talk_Parent").transform);
 
-                talk_Box_Y_Pos -= 100;
                 talk_Box_Y_Pos -= 80;
+                talk_Box_Y_Pos -= 60;
                 clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(-220f, talk_Box_Y_Pos);                
-                talk_Box_Y_Pos -= 80;
+                talk_Box_Y_Pos -= 60;
             }
             else
             {
-                clone = Instantiate(Long_Talk_Box_Prefab, Talk_Canvas.transform);
+                clone = Instantiate(Long_Talk_Box_Prefab, Talk_Canvas.transform.Find("Talk_Parent").transform);
 
-                talk_Box_Y_Pos -= 100;
-                talk_Box_Y_Pos -= 120;
-                clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(-220f, talk_Box_Y_Pos);                
-                talk_Box_Y_Pos -= 120;
+                talk_Box_Y_Pos -= 80;
+                talk_Box_Y_Pos -= 90;
+                clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(-220f, talk_Box_Y_Pos);
+                talk_Box_Y_Pos -= 90;
             }            
         }
         // 주인공이면 오른쪽에 생성만.
@@ -251,18 +284,18 @@ public class Dialogue_Manager : MonoBehaviour
         {            
             if (isLong == false)
             {
-                clone = Instantiate(Talk_Box_Hero_Prefab, Talk_Canvas.transform);
+                clone = Instantiate(Talk_Box_Hero_Prefab, Talk_Canvas.transform.Find("Talk_Parent").transform);
 
-                talk_Box_Y_Pos -= 100;
+                talk_Box_Y_Pos -= 80;
                 talk_Box_Y_Pos -= 80;
                 clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(220f, talk_Box_Y_Pos);                
                 talk_Box_Y_Pos -= 40;
             }
             else
             {
-                clone = Instantiate(Long_Talk_Box_Hero_Prefab, Talk_Canvas.transform);
+                clone = Instantiate(Long_Talk_Box_Hero_Prefab, Talk_Canvas.transform.Find("Talk_Parent").transform);
 
-                talk_Box_Y_Pos -= 100;
+                talk_Box_Y_Pos -= 80;
                 talk_Box_Y_Pos -= 120;
                 clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(220f, talk_Box_Y_Pos);                
                 talk_Box_Y_Pos -= 60;
@@ -296,5 +329,55 @@ public class Dialogue_Manager : MonoBehaviour
             return;
 
         Start_Dialogue(Select_Background.GetChild(cur_Select_Idx).GetComponent<Select_Object>().action);
+    }
+
+    public void Connect_Next_Situation(string str)
+    {
+        current_Coroutine = null;
+        switch (str)
+        {
+            case "BuildMap1_Canvas":
+                BuildMap1_Manager.instance.BuildMap_Canvas_On();
+                break;
+            case "Move_Chapter1_3":                
+                Start_Dialogue("Chapter1_3");
+                break;
+            case "Quiz1_Canvas_On":
+                Quiz1_Manager.instance.Quiz1_Start();
+                break;
+            case "Quiz2_Canvas_On":
+                Quiz2_Manager.instance.Quiz2_Start();
+                break;
+            case "Move_Chapter2_3":
+                Start_Dialogue("Chapter2_3");
+                break;
+            case "Move_Chapter2_7":
+                Start_Dialogue("Chapter2_7");
+                break;
+            case "Move_Chapter2_8":
+                Start_Dialogue("Chapter2_8");
+                break;
+            case "Move_Chapter2_11":
+                Start_Dialogue("Chapter2_11");
+                break;
+            case "Move_Chapter3_3":
+                Start_Dialogue("Chapter3_3");
+                break;
+            case "Move_Chapter3_6":
+                Start_Dialogue("Chapter3_6");
+                break;
+            case "Move_Chapter3_9":
+                Start_Dialogue("Chapter3_9");
+                break;
+            case "Move_Chapter3_10":
+                Start_Dialogue("Chapter3_10");
+                break;
+            case "Move_Chapter3_13":
+                Start_Dialogue("Chapter3_13");
+                break;
+            case "Quiz3_Canvas_On":
+                Quiz3_Manager.instance.Quiz3_Start();
+                break;
+        }
     }
 }

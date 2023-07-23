@@ -36,6 +36,7 @@ public class Database_Manager : MonoBehaviour
             string category = texts[i]["category"].ToString();
 
             Dialogue tempDialogue = new Dialogue();
+            tempDialogue.category = category;
             tempDialogue.type = texts[i]["type"].ToString();
             tempDialogue.character = RefineText(texts[i]["character"].ToString());
             tempDialogue.text = RefineText(texts[i]["text"].ToString());            

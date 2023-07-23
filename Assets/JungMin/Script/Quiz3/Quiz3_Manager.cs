@@ -52,6 +52,10 @@ public class Quiz3_Manager : MonoBehaviour
         SetText(1);
     }
 
+    private void Start()
+    {
+        Dialogue_Manager.instance.Start_Dialogue("Chapter3");
+    }
     public void Quiz3_Start()
     {
         // 퀴즈 3 스타트 함수.

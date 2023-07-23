@@ -56,6 +56,7 @@ public class DraggableObject : MonoBehaviour
 			targetImage.SetActive(true); // 이미지를 활성화
 			gameObject.SetActive(false); // 오브젝트 비활성화
 										 // 오브젝트 고정을 위해 필요한 추가 작업
+			Quiz2_Manager.instance.setText(2);
 		}
 		else // 대상 영역 밖으로 드롭된 경우
 		{
